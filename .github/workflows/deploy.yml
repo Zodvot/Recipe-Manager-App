@@ -17,7 +17,6 @@ concurrency:
 
 jobs:
   build:
-    if: ${{ vars.API_BASE_URL != '' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -33,7 +32,7 @@ jobs:
         run: flutter pub get
 
       - name: Build web app
-        run: flutter build web --release --base-href "/${{ github.event.repository.name }}/" --dart-define=API_BASE_URL=${{ vars.API_BASE_URL }}
+        run: flutter build web --release --base-href "/${{ github.event.repository.name }}/" --dart-define=API_BASE_URL=${{ vars.API_BASE_URL || 'https://recipe-manager-app-prxz.onrender.com/api' }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
