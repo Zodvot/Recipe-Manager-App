@@ -3,17 +3,18 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
-const { testConnection } = require('./config/database');
+const { connect, testConnection } = require('./config/database');
 const authRoutes = require('./routes/auth');
 const recipeRoutes = require('./routes/recipes');
 
+if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is required.');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors({
   origin: [
-    'https://wunbof.github.io',
+    process.env.FRONTEND_ORIGIN || 'https://zodvot.github.io',
     'http://localhost:3000',
     'http://localhost:8080',
     'http://127.0.0.1:8080'
@@ -95,4 +96,4 @@ function startServer() {
   });
 }
 
-startServer();
+connect().then(startServer).catch(error => { console.error(error.message); process.exit(1); });

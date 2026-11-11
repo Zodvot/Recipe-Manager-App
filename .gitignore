@@ -62,3 +62,6 @@ yarn-error.log*
 # Backup files
 *.bak
 *~
+
+# Keep the backend lockfile for reproducible Render builds.
+!backend/package-lock.json

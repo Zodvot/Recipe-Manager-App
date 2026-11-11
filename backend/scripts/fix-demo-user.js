@@ -13,7 +13,7 @@ async function fixDemoUser() {
     const hashedPassword = await bcrypt.hash(password, 10);
     
     await pool.query(
-      'INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)',
+      'INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?) RETURNING user_id AS id',
       ['demo_user', 'demo@example.com', hashedPassword]
     );
     

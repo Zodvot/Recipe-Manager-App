@@ -16,7 +16,7 @@ router.get('/', authenticateToken, async (req, res) => {
     }
 
     if (search) {
-      query += ' AND (title LIKE ? OR description LIKE ?)';
+      query += ' AND (title ILIKE ? OR description ILIKE ?)';
       params.push(`%${search}%`, `%${search}%`);
     }
 
@@ -83,7 +83,7 @@ router.post('/', authenticateToken, async (req, res) => {
 
     const [result] = await pool.query(
       `INSERT INTO recipes (user_id, title, description, ingredients, instructions, cooking_time, category, image_url) 
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING recipe_id AS id`,
       [req.user.userId, title, description, ingredients, instructions, cooking_time, category, image_url]
     );
 

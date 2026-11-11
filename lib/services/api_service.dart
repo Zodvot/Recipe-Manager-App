@@ -6,7 +6,7 @@ import '../models/user.dart';
 import '../models/recipe.dart';
 
 class ApiService {
-  static const String baseUrl = 'https://recipe-manager-app-production-ce60.up.railway.app/api';
+  static const String baseUrl = String.fromEnvironment('API_BASE_URL', defaultValue: 'http://localhost:3000/api');
   static const Duration _timeout = Duration(seconds: 20);
 
   // ======================

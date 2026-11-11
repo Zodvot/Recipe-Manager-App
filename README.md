@@ -1,3 +1,5 @@
+> PostgreSQL migration update — this branch now uses PostgreSQL. Follow [HOSTING.md](HOSTING.md) for current setup. Older MySQL/Railway instructions below are historical.
+
 # recipe_manager_app
 
 A new Flutter project.
