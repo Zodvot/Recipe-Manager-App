@@ -5,7 +5,7 @@
 3. Set `DATABASE_URL` to the Neon connection string including its SSL settings. For JWT-based apps the blueprint generates a private `JWT_SECRET`.
 4. Deploy and verify the public URL. The app creates its PostgreSQL tables at startup.
 
-The Flutter frontend uses GitHub Pages. After deploying the backend, set the repository Actions variable `API_BASE_URL` to your Render URL followed by `/api`. In repository Settings → Pages, choose GitHub Actions. Run the Deploy Flutter Web workflow. The frontend URL is `https://zodvot.github.io/recipe-manager-app/`. The backend permits that origin through FRONTEND_ORIGIN. Local Flutter builds can use `--dart-define=API_BASE_URL=http://localhost:3000/api`.
+The Flutter frontend uses GitHub Pages. After deploying the backend, set the repository Actions variable `API_BASE_URL` to your Render URL followed by `/api`. In repository Settings → Pages, choose GitHub Actions. Run the Deploy Flutter Web workflow. The frontend URL is `https://zodvot.github.io/Recipe-Manager-App/`. The backend permits that origin through FRONTEND_ORIGIN. Local Flutter builds can use `--dart-define=API_BASE_URL=http://localhost:3000/api`.
 
 The historical demo-user scripts and MySQL schema are retained for reference and are not part of PostgreSQL setup. Use signup to create accounts.
 
