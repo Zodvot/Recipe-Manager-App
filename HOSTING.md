@@ -20,3 +20,10 @@ Use the standard PGHOST, PGPORT, PGDATABASE, PGUSER and PGPASSWORD environment v
 ## Free-plan limits
 
 Render free services sleep when idle and share workspace usage limits. Neon has storage and compute limits. Services can wake slowly. Pricing and limits can change.
+
+
+## Render frontend deployment
+
+The main website is now served by the Render service at its root URL. The Flutter release is checked into `backend/public` so GitHub Actions is not needed to deploy the site. API requests use the relative `/api` path.
+
+After changing Flutter source, run `flutter build web --release --base-href / --dart-define=API_BASE_URL=/api`, copy `build/web` into `backend/public`, and commit the updated release. The optional GitHub Pages workflow is separate from this deployment.

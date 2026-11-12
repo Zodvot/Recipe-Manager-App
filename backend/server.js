@@ -33,7 +33,7 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.json({
     success: true,
     message: 'Recipe Manager API is running',
@@ -58,6 +58,11 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/recipes', recipeRoutes);
+
+// Serve the checked-in Flutter release from the same origin as the API.
+const webRoot = require('node:path').join(__dirname, 'public');
+app.use(express.static(webRoot, { setHeaders: (res) => res.set('Cache-Control', 'no-cache') }));
+app.get(/^\/(?!api(?:\/|$)).*/, (req, res) => res.sendFile(require('node:path').join(webRoot, 'index.html')));
 
 // 404 handler
 app.use((req, res) => {
